@@ -1,0 +1,77 @@
+﻿<Window x:Class="Nedeljni_II_Milos_Peric.View.AddClinicView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nedeljni_II_Milos_Peric.View" xmlns:local1="clr-namespace:Nedeljni_II_Milos_Peric.Utility"
+        mc:Ignorable="d"
+        Title="AddClinicView" Height="550" Width="560" Background="#FF19253A" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin"            Value="20,0,20,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding"           Value="10,0,10,0" />
+            <Setter Property="Height"            Value="30" />
+            <Setter Property="Width"             Value="80" />
+            <Setter Property="Foreground"        Value="White" />
+            <Setter Property="Background"        Value="#545d6a" />
+            <Setter Property="FontSize"          Value="12" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background"        Value="#545d6a" />
+            <Setter Property="FontWeight"        Value="Bold" />
+            <Setter Property="FontSize"          Value="12" />
+            <Setter Property="Height"            Value="25" />
+            <Setter Property="Width"             Value="200" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize"          Value="12" />
+            <Setter Property="Foreground"        Value="White" />
+        </Style>
+        <local1:YesNoToBooleanConverter x:Key="YesNoToBooleanConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="400" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Center" Margin="3 11 3 3">
+            <Label Content="Add New Clinic Form" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="White" FontSize="14" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical"  HorizontalAlignment="Left" Margin="10 10 50 10">
+                <Label Content="Institution Name:"/>
+                <TextBox Text="{Binding Clinic.InstitutionName, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Creation Date:" />
+                <DatePicker SelectedDate="{Binding Clinic.CreationDate, UpdateSourceTrigger=PropertyChanged , ConverterParameter=null}" Height="30"/>
+                <Label Content="Institution Owner:" />
+                <TextBox Text="{Binding Clinic.InstitutionOwner, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Institution Address:" />
+                <TextBox Text="{Binding Clinic.InstitutionAddress, UpdateSourceTrigger=PropertyChanged}"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Vertical"  HorizontalAlignment="Right" Margin="10 10 10 10">
+                <Label Content="Number of Floors:"/>
+                <TextBox Text="{Binding Clinic.NumberOdFloors, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Number of Rooms per Floor:"/>
+                <TextBox Text="{Binding Clinic.NumberOfRoomsPerFloor, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Number of Access Points for Ambulance:"/>
+                <TextBox Text="{Binding Clinic.NumberOfAccessPointsForAmbulance, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Number of Access Points for Disabled:"/>
+                <TextBox Text="{Binding Clinic.NumberOfAccessPointsForInvalids, UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox IsChecked="{Binding ElementName=txtTerrace, Path=Text, Converter={StaticResource YesNoToBooleanConverter}}" Margin="20 7 5 5" Foreground="White" Content="Has Terrace?" />
+                <TextBox IsReadOnly="True" Name="txtTerrace" Text="{Binding HasTerrace, UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox IsChecked="{Binding ElementName=txtYard, Path=Text, Converter={StaticResource YesNoToBooleanConverter}}" Margin="20 7 5 5" Foreground="White" Content="Has Yard?" />
+                <TextBox IsReadOnly="True" Name="txtYard" Text="{Binding HasYard, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock Grid.Row="2" HorizontalAlignment="Left" Foreground="LightCyan" Margin="3 3 3 3" >Current user:</TextBlock>
+        <TextBlock Grid.Row="2" HorizontalAlignment="Left" Foreground="DarkCyan" Margin="10 20 10 10" Text="{Binding ClinicAdmin.Username, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
+            <Button Command="{Binding AddClinicCommand}" Content="Create Clinic" Width="110"/>
+            <Button Command="{Binding LogoutCommand}" Content="Logout" />
+        </StackPanel>
+    </Grid>
+</Window>

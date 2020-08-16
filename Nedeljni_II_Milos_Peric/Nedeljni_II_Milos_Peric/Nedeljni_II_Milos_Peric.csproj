@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,9 +64,87 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ClinicDatabaseModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClinicDatabaseModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClinicDatabaseModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClinicDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClinicDatabaseModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClinicDatabaseModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="DatabaseService.cs" />
+    <Compile Include="tblClinicAdmin.cs">
+      <DependentUpon>ClinicDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClinicDoctor.cs">
+      <DependentUpon>ClinicDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClinicInstitution.cs">
+      <DependentUpon>ClinicDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClinicMaintenace.cs">
+      <DependentUpon>ClinicDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClinicManager.cs">
+      <DependentUpon>ClinicDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblClinicPatient.cs">
+      <DependentUpon>ClinicDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUser.cs">
+      <DependentUpon>ClinicDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\CredentialsGenerator.cs" />
+    <Compile Include="Utility\EncryptionHelper.cs" />
+    <Compile Include="Utility\YesNoToBooleanConverter.cs" />
+    <Compile Include="Validation\PasswordValidator.cs" />
+    <Compile Include="ViewModel\AddClinicAdministratorViewModel.cs" />
+    <Compile Include="ViewModel\AddClinicViewModel.cs" />
+    <Compile Include="ViewModel\ChangeCredentialsViewModel.cs" />
+    <Compile Include="ViewModel\ClinicAdminViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MasterViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\AddClinicAdministratorView.xaml.cs">
+      <DependentUpon>AddClinicAdministratorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddClinicView.xaml.cs">
+      <DependentUpon>AddClinicView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChangeCredentialsView.xaml.cs">
+      <DependentUpon>ChangeCredentialsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClinicAdminView.xaml.cs">
+      <DependentUpon>ClinicAdminView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MasterView.xaml.cs">
+      <DependentUpon>MasterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="vwClinicAdmin.cs">
+      <DependentUpon>ClinicDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwClinicDoctor.cs">
+      <DependentUpon>ClinicDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwClinicMaintenance.cs">
+      <DependentUpon>ClinicDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwClinicManager.cs">
+      <DependentUpon>ClinicDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwClinicPatient.cs">
+      <DependentUpon>ClinicDatabaseModel.tt</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -71,7 +158,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AddClinicAdministratorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddClinicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChangeCredentialsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClinicAdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MasterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -94,6 +201,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="ClinicDatabaseModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ClinicDatabaseModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ClinicDatabaseModel.edmx.diagram">
+      <DependentUpon>ClinicDatabaseModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -103,9 +218,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Command\" />
-    <Folder Include="Utility\" />
-    <Folder Include="Validation\" />
+    <Content Include="ClinicDatabaseModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ClinicDatabaseModel.Context.cs</LastGenOutput>
+      <DependentUpon>ClinicDatabaseModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="ClinicDatabaseModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClinicDatabaseModel.edmx</DependentUpon>
+      <LastGenOutput>ClinicDatabaseModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

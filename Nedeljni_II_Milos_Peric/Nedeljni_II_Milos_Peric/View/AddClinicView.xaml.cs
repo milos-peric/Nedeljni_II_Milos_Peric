@@ -16,14 +16,14 @@ using System.Windows.Shapes;
 namespace Nedeljni_II_Milos_Peric.View
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for AddClinicView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class AddClinicView : Window
     {
-        public LoginView()
+        public AddClinicView(vwClinicAdmin clinicAdmin)
         {
             InitializeComponent();
-            DataContext = new LoginViewModel(this);
+            DataContext = new AddClinicViewModel(this, clinicAdmin);
         }
     }
 }

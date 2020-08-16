@@ -16,14 +16,16 @@ using System.Windows.Shapes;
 namespace Nedeljni_II_Milos_Peric.View
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for MasterView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class MasterView : Window
     {
-        public LoginView()
+        public MasterView()
         {
             InitializeComponent();
-            DataContext = new LoginViewModel(this);
+            DataContext = new MasterViewModel(this);
         }
+
+
     }
 }
